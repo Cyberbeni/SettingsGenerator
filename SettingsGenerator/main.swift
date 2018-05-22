@@ -28,5 +28,4 @@ if preferences == nil {
 
 MultiValueParser.parse(preferences!)
 
-
-
+Printer.shared.writeToFile()

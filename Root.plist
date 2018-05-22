@@ -14,7 +14,7 @@
 			<key>Key</key>
 			<string>defaultBackendServer</string>
 			<key>DefaultValue</key>
-			<string>1</string>
+			<integer>1</integer>
 			<key>Values</key>
 			<array>
 				<integer>0</integer>

@@ -9,19 +9,20 @@
 import Foundation
 
 final class MultiValueParser: Parser {
-    static let type = "PSMultiValueSpecifier"
+    static let type = Types.MultiValue.rawValue
     
     static func parse(_ preferences: NSArray) {
         let multiValues = MultiValueParser.filter(preferences)
         
         for element in multiValues {
             if let dictionary = element as? NSDictionary {
-                let defaultValue = dictionary["DefaultValue"]
+                print(element)
+                let defaultValue = dictionary[Keys.DefaultValue.rawValue]
                 switch defaultValue {
                 case let value as Int:
-                    print("int", value)
+                    Printer.shared.add(MultiValueObject(defaultValue: value, dictionary: dictionary))
                 case let value as String:
-                    print("string", value)
+                    Printer.shared.add(MultiValueObject(defaultValue: value, dictionary: dictionary))
                 default:
                     print("unsupported type")
                 }
