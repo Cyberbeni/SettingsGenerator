@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		75393D5B20B4BD95005D36DA /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75393D5A20B4BD95005D36DA /* main.swift */; };
+		75393D6620B4C97C005D36DA /* MultiValueParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75393D6520B4C97C005D36DA /* MultiValueParser.swift */; };
+		75393D6820B4C998005D36DA /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75393D6720B4C998005D36DA /* Parser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +27,8 @@
 /* Begin PBXFileReference section */
 		75393D5720B4BD95005D36DA /* SettingsGenerator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SettingsGenerator; sourceTree = BUILT_PRODUCTS_DIR; };
 		75393D5A20B4BD95005D36DA /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		75393D6520B4C97C005D36DA /* MultiValueParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiValueParser.swift; sourceTree = "<group>"; };
+		75393D6720B4C998005D36DA /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,9 +61,27 @@
 		75393D5920B4BD95005D36DA /* SettingsGenerator */ = {
 			isa = PBXGroup;
 			children = (
+				75393D6920B4CBAE005D36DA /* PrintableObjects */,
+				75393D6320B4C94E005D36DA /* Parsers */,
 				75393D5A20B4BD95005D36DA /* main.swift */,
 			);
 			path = SettingsGenerator;
+			sourceTree = "<group>";
+		};
+		75393D6320B4C94E005D36DA /* Parsers */ = {
+			isa = PBXGroup;
+			children = (
+				75393D6520B4C97C005D36DA /* MultiValueParser.swift */,
+				75393D6720B4C998005D36DA /* Parser.swift */,
+			);
+			path = Parsers;
+			sourceTree = "<group>";
+		};
+		75393D6920B4CBAE005D36DA /* PrintableObjects */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PrintableObjects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -119,7 +141,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75393D6620B4C97C005D36DA /* MultiValueParser.swift in Sources */,
 				75393D5B20B4BD95005D36DA /* main.swift in Sources */,
+				75393D6820B4C998005D36DA /* Parser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,5 +8,25 @@
 
 import Foundation
 
-print("Hello, World!")
+let argCount = CommandLine.argc
+
+if argCount != 2 {
+    print("Usage: 'settingsGenerator path_to_plist'")
+    exit(-1)
+}
+
+let plistPath = CommandLine.arguments[1]
+let url = URL(fileURLWithPath: plistPath)
+
+let dictionary = NSDictionary(contentsOfFile: url.path)
+let preferences = dictionary?["PreferenceSpecifiers"] as? NSArray
+
+if preferences == nil {
+    print("Invalid file path")
+    exit(-1)
+}
+
+MultiValueParser.parse(preferences!)
+
+
 
