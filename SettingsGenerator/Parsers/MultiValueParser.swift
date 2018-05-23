@@ -23,6 +23,8 @@ final class MultiValueParser: Parser {
                     Printer.shared.add(MultiValueObject(defaultValue: value, dictionary: dictionary))
                 case let value as String:
                     Printer.shared.add(MultiValueObject(defaultValue: value, dictionary: dictionary))
+                case let value as Double:
+                    Printer.shared.add(MultiValueObject(defaultValue: value, dictionary: dictionary))
                 default:
                     print("unsupported type")
                 }

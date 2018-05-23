@@ -18,6 +18,9 @@ final class Printer {
 //
 // Settings.swift
 //
+
+import Foundation
+
 struct Settings {
 
 """

@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class MultiValueObject<ValueType: CustomStringConvertible>: PrintableObject {
+final class MultiValueObject<ValueType: CaseLineProvider & Equatable>: PrintableObject {
     var key: String
     var defaultValue: ValueType
     var values: [String: ValueType]
@@ -26,16 +26,47 @@ final class MultiValueObject<ValueType: CustomStringConvertible>: PrintableObjec
     
     var description: String
     {
-        var description = """
-    
-    enum \(key.capitalizedFirstLetter): \(ValueType.self) {
-
-"""
+        var description = "\n\tenum \(key.capitalizedFirstLetter): \(ValueType.self) {\n"
         self.values.forEach { (body) in
-            description.append("\t\tcase \(body.key.camelCasedString) = \(body.value.description)\n")
+            description.append(body.value.lineForCase(key: body.key))
         }
-        
+        description.append("\n\t\tprivate static let key = \"\(key)\"\n")
+        description.append("\t\tprivate static let defaultValue: \(key.capitalizedFirstLetter) = .\(values.first(where: { $0.value == defaultValue })!.key.camelCasedString)\n")
+        description.append("""
+
+        static var selectedValue: \(key.capitalizedFirstLetter) {
+            let value = UserDefaults.standard.object(forKey: key) as? \(ValueType.self)
+            if let value = value {
+                return Settings.\(key.capitalizedFirstLetter)(rawValue: value) ?? defaultValue
+            } else {
+                return defaultValue
+            }
+        }
+
+""")
         description.append("\t}\n")
         return description
+    }
+}
+
+protocol CaseLineProvider: CustomStringConvertible {
+    func lineForCase(key: String) -> String
+}
+
+extension String: CaseLineProvider {
+    func lineForCase(key: String) -> String {
+        return "\t\tcase \(key.camelCasedString) = \"\(self)\"\n"
+    }
+}
+
+extension Int: CaseLineProvider {
+    func lineForCase(key: String) -> String {
+        return "\t\tcase \(key.camelCasedString) = \(self)\n"
+    }
+}
+
+extension Double: CaseLineProvider {
+    func lineForCase(key: String) -> String {
+        return "\t\tcase \(key.camelCasedString) = \(self)\n"
     }
 }
