@@ -33,12 +33,18 @@ struct Settings {
         printables.append(printable)
     }
     
-    public func writeToFile() {
+    public func writeToFile(_ fileUrl: URL) {
         var outputString = self.header
         printables.forEach { (printable) in
             outputString.append(printable.description)
         }
         outputString.append(footer)
-        print(outputString)
+        
+        do {
+            try outputString.write(toFile: fileUrl.path, atomically: true, encoding: .utf8)
+        } catch {
+            print("error writing to output file")
+            exit(1)
+        }
     }
 }
