@@ -22,10 +22,8 @@ final class Printer {
 import Foundation
 
 struct Settings {
-
 """
     private var footer: String = """
-
 }
 """
 

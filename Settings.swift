@@ -5,7 +5,6 @@
 import Foundation
 
 struct Settings {
-
     enum DefaultBackendServer: String {
         case test = "1"
         case dev = "0"
@@ -14,32 +13,41 @@ struct Settings {
         private static let defaultValue: DefaultBackendServer = .test
 
         static var selectedValue: DefaultBackendServer {
-            let value = UserDefaults.standard.object(forKey: key) as? String
-            if let value = value {
-                return DefaultBackendServer(rawValue: value) ?? defaultValue
-            } else {
-                return defaultValue
+            get {
+                let value = UserDefaults.standard.object(forKey: key) as? String
+                if let value = value {
+                    return DefaultBackendServer(rawValue: value) ?? defaultValue
+                } else {
+                    return defaultValue
+                }
+            }
+            set {
+                UserDefaults.standard.set(newValue.rawValue, forKey: key)
             }
         }
     }
 
-    enum DefaultNavigationApp: Int {
-        case chooseFromAvailableApps = 0
-        case maps = 1
-        case googleMaps = 2
-        case waze = 3
+    enum DefaultNavigationApp: Double {
+        case chooseFromAvailableApps = 0.0
+        case maps = 1.0
+        case googleMaps = 2.0
+        case waze = 3.5
 
         private static let key = "defaultNavigationApp"
         private static let defaultValue: DefaultNavigationApp = .chooseFromAvailableApps
 
         static var selectedValue: DefaultNavigationApp {
-            let value = UserDefaults.standard.object(forKey: key) as? Int
-            if let value = value {
-                return DefaultNavigationApp(rawValue: value) ?? defaultValue
-            } else {
-                return defaultValue
+            get {
+                let value = UserDefaults.standard.object(forKey: key) as? Double
+                if let value = value {
+                    return DefaultNavigationApp(rawValue: value) ?? defaultValue
+                } else {
+                    return defaultValue
+                }
+            }
+            set {
+                UserDefaults.standard.set(newValue.rawValue, forKey: key)
             }
         }
     }
-
 }

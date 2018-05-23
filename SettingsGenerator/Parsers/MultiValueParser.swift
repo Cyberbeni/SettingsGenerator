@@ -17,13 +17,14 @@ final class MultiValueParser: Parser {
         for element in multiValues {
             if let dictionary = element as? NSDictionary {
                 print(element)
+                let values = dictionary[Keys.Values.rawValue]
                 let defaultValue = dictionary[Keys.DefaultValue.rawValue]
-                switch defaultValue {
-                case let value as Int:
+                switch (values, defaultValue) {
+                case let (_ as [Int], value as Int):
                     Printer.shared.add(MultiValueObject(defaultValue: value, dictionary: dictionary))
-                case let value as String:
+                case let (_ as [String], value as String):
                     Printer.shared.add(MultiValueObject(defaultValue: value, dictionary: dictionary))
-                case let value as Double:
+                case let (_ as [Double], value as Double):
                     Printer.shared.add(MultiValueObject(defaultValue: value, dictionary: dictionary))
                 default:
                     print("unsupported type")
