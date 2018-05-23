@@ -40,6 +40,8 @@ struct Settings {
         }
         outputString.append(footer)
         
+        outputString = outputString.replacingOccurrences(of: "\t", with: "    ")
+        
         do {
             try outputString.write(toFile: fileUrl.path, atomically: true, encoding: .utf8)
         } catch {
