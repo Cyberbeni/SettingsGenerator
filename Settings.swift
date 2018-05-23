@@ -16,7 +16,7 @@ struct Settings {
         static var selectedValue: DefaultBackendServer {
             let value = UserDefaults.standard.object(forKey: key) as? String
             if let value = value {
-                return Settings.DefaultBackendServer(rawValue: value) ?? defaultValue
+                return DefaultBackendServer(rawValue: value) ?? defaultValue
             } else {
                 return defaultValue
             }
@@ -35,7 +35,7 @@ struct Settings {
         static var selectedValue: DefaultNavigationApp {
             let value = UserDefaults.standard.object(forKey: key) as? Int
             if let value = value {
-                return Settings.DefaultNavigationApp(rawValue: value) ?? defaultValue
+                return DefaultNavigationApp(rawValue: value) ?? defaultValue
             } else {
                 return defaultValue
             }

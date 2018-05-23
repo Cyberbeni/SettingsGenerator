@@ -37,7 +37,7 @@ final class MultiValueObject<ValueType: CaseLineProvider & Equatable>: Printable
         static var selectedValue: \(key.capitalizedFirstLetter) {
             let value = UserDefaults.standard.object(forKey: key) as? \(ValueType.self)
             if let value = value {
-                return Settings.\(key.capitalizedFirstLetter)(rawValue: value) ?? defaultValue
+                return \(key.capitalizedFirstLetter)(rawValue: value) ?? defaultValue
             } else {
                 return defaultValue
             }
