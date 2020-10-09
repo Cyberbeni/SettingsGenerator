@@ -24,10 +24,10 @@ struct Settings {
     }
 
     enum DefaultNavigationApp: Double {
-        case chooseFromAvailableApps = 0.0
-        case maps = 1.0
-        case googleMaps = 2.0
         case waze = 3.5
+        case googleMaps = 2.0
+        case maps = 1.0
+        case chooseFromAvailableApps = 0.0
 
         private static let key = "defaultNavigationApp"
         private static let defaultValue: DefaultNavigationApp = .chooseFromAvailableApps

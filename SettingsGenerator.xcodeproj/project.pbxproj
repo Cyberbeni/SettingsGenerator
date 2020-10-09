@@ -3,13 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		75393D5B20B4BD95005D36DA /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75393D5A20B4BD95005D36DA /* main.swift */; };
 		75393D6620B4C97C005D36DA /* MultiValueParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75393D6520B4C97C005D36DA /* MultiValueParser.swift */; };
 		75393D6820B4C998005D36DA /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75393D6720B4C998005D36DA /* Parser.swift */; };
+		7568B8642530D2BC00A34E96 /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = 7568B8632530D2BC00A34E96 /* ArgumentParser */; };
 		75D1FA8A20B4D31C0013E90B /* Printer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D1FA8920B4D31C0013E90B /* Printer.swift */; };
 		75D1FA8D20B4D37A0013E90B /* PrintableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D1FA8C20B4D37A0013E90B /* PrintableObject.swift */; };
 		75D1FA8F20B4D5990013E90B /* MultiValueObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D1FA8E20B4D5990013E90B /* MultiValueObject.swift */; };
@@ -48,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7568B8642530D2BC00A34E96 /* ArgumentParser in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,8 +142,12 @@
 			buildRules = (
 			);
 			dependencies = (
+				7568B8682530D3B600A34E96 /* PBXTargetDependency */,
 			);
 			name = SettingsGenerator;
+			packageProductDependencies = (
+				7568B8632530D2BC00A34E96 /* ArgumentParser */,
+			);
 			productName = SettingsGenerator;
 			productReference = 75393D5720B4BD95005D36DA /* SettingsGenerator */;
 			productType = "com.apple.product-type.tool";
@@ -153,7 +159,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Benedek Kozma";
 				TargetAttributes = {
 					75393D5620B4BD95005D36DA = {
@@ -167,8 +173,12 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 75393D4E20B4BD94005D36DA;
+			packageReferences = (
+				7568B8622530D2BC00A34E96 /* XCRemoteSwiftPackageReference "swift-argument-parser" */,
+			);
 			productRefGroup = 75393D5820B4BD95005D36DA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -197,6 +207,13 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		7568B8682530D3B600A34E96 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 7568B8672530D3B600A34E96 /* ArgumentParser */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
 		75393D5C20B4BD95005D36DA /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -224,6 +241,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -249,7 +267,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.14.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -284,6 +302,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -303,7 +322,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.14.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -314,20 +333,26 @@
 		75393D5F20B4BD95005D36DA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V63P53K235;
+				ENABLE_HARDENED_RUNTIME = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14.4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		75393D6020B4BD95005D36DA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V63P53K235;
+				ENABLE_HARDENED_RUNTIME = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14.4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -353,6 +378,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7568B8622530D2BC00A34E96 /* XCRemoteSwiftPackageReference "swift-argument-parser" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-argument-parser";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7568B8632530D2BC00A34E96 /* ArgumentParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7568B8622530D2BC00A34E96 /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
+			productName = ArgumentParser;
+		};
+		7568B8672530D3B600A34E96 /* ArgumentParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7568B8622530D2BC00A34E96 /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
+			productName = ArgumentParser;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 75393D4F20B4BD94005D36DA /* Project object */;
 }

@@ -7,27 +7,29 @@
 //
 
 import Foundation
+import ArgumentParser
 
-let argCount = CommandLine.argc
-
-if argCount != 3 {
-    print("Usage: 'settingsGenerator path_to_plist path_to_output'")
-    exit(-1)
+struct SettingsGenerator: ParsableCommand {
+	@Argument(help: "Path for the settings.bundle plist", completion: .file())
+	var plistPath: String
+	
+	@Argument(help: "Path for the output file", completion: .file())
+	var outputPath: String
+	
+	func run() throws {
+		let inputUrl = URL(fileURLWithPath: plistPath)
+		let outputUrl = URL(fileURLWithPath: outputPath)
+		
+		let dictionary = NSDictionary(contentsOfFile: inputUrl.path)
+		guard let preferences = dictionary?["PreferenceSpecifiers"] as? NSArray
+		else {
+			throw NSError(domain: "SettingsGenerator", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid input path"])
+		}
+		
+		MultiValueParser.parse(preferences)
+		
+		Printer.shared.writeToFile(outputUrl)
+	}
 }
 
-let plistPath = CommandLine.arguments[1]
-let inputUrl = URL(fileURLWithPath: plistPath)
-let outputPath = CommandLine.arguments[2]
-let outputUrl = URL(fileURLWithPath: outputPath)
-
-let dictionary = NSDictionary(contentsOfFile: inputUrl.path)
-let preferences = dictionary?["PreferenceSpecifiers"] as? NSArray
-
-if preferences == nil {
-    print("Invalid file path")
-    exit(-1)
-}
-
-MultiValueParser.parse(preferences!)
-
-Printer.shared.writeToFile(outputUrl)
+SettingsGenerator.main()
