@@ -23,7 +23,7 @@ struct SettingsGenerator: ParsableCommand {
 		let dictionary = NSDictionary(contentsOfFile: inputUrl.path)
 		guard let preferences = dictionary?["PreferenceSpecifiers"] as? NSArray
 		else {
-			throw NSError(domain: "SettingsGenerator", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid input path"])
+			throw ValidationError("Invalid input path")
 		}
 		
 		MultiValueParser.parse(preferences)
